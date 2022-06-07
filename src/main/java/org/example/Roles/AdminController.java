@@ -21,8 +21,6 @@ public class AdminController {
     @RequestMapping(value = "news/new", method = RequestMethod.GET)
     public String newNews(Model model) {
         model.addAttribute("news",new News());
-        return "redirect:/news";
+        return "newNews";
     }
-
-
 }

@@ -15,29 +15,29 @@ public class UserController{
     public List<News> newsList;
 
     @RequestMapping(value = "/news", method = RequestMethod.GET)
-    public List<News> getAllNews() {
+    public String getAllNews() {
         newsList = newsServiceImpl.getAllNews();
         if (newsList == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "News not found");
         }
-        return newsList;
+        return "news";
     }
 
     @RequestMapping(value = "/news", method = RequestMethod.GET)
-    public List<News> findByCategory(@RequestParam String category) {
+    public String findByCategory(@RequestParam String category) {
         newsList = newsServiceImpl.findByCategory(category);
         if (newsList == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "News in this category not found");
         }
-        return "";
+        return "news";
     }
 
     @RequestMapping(value = "/news", method = RequestMethod.GET)
-    public News findByKeyWord(@RequestParam String content) {
+    public String findByKeyWord(@RequestParam String content) {
         newsList = newsServiceImpl.findByKeyWord(content);
         if (newsList == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "News with this word not found");
         }
-        return "";
+        return "news";
     }
 }
