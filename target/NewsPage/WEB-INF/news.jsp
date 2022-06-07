@@ -24,7 +24,7 @@
 
 <body>
 
-<!-- Navigation -->
+<%--<!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
         <a class="navbar-brand" th:href="@{/}">Daily News</a>
@@ -32,7 +32,7 @@
                 class="navbar-toggler" data-target="#navbarResponsive" data-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
+        <&lt;%&ndash;div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item mx-2">
                     <a class="nav-link" th:href="@{/(keyword=Fana)}">Fana</a>
@@ -44,9 +44,9 @@
                     <a class="nav-link" th:href="@{/(keyword=BBC)}">BBC - Amharic</a>
                 </li>
             </ul>
-        </div>
+        </div>&ndash;%&gt;
     </div>
-</nav>
+</nav>--%>
 
 <!-- Page Content -->
 <div class="container" style="min-height: 84vh">
@@ -55,31 +55,45 @@
 
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-            <h1 class="my-4">News
-                <small class="ml-3 h4 text-mute" th:text="${param.keyword}">All Sources</small>
+            <h1 class="my-4">News Site
+                <small class="ml-3 h4 text-mute" th:text="${param.keyword}">All News</small>
             </h1>
             <div th:if="${newsList.isEmpty()}">
                 <hr/>
-                <p class="lead mb-0 d-inline-block font-italic">
-                    Found Nothing...
-                </p>
-                <a class="ml-3" th:href="@{/}">show all...</a>
+
             </div>
 
             <!-- News Post -->
             <div class="card my-4 hover-shadow" th:each="post:${newsList}">
                 <div class="card-header">
                     <span class="badge badge-pill badge-primary text-light text-capitalize"
-                          th:text="${post.source}">category</span>
+                          th:text="${post.source}">Sport</span>
                 </div>
-                <!--                <img alt="Card image cap" class="card-img-top" src="http://placehold.it/750x300">-->
                 <div class="card-body">
-                    <h2 class="card-title" th:text="${post.title}">Post Title</h2>
-                    <p class="card-text" th:text="${post.description}">Lorem ipsum dolor sit amet, consectetur
-                        adipisicing elit. Reiciendis aliquid
-                        atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero
-                        voluptate voluptatibus possimus, veniam magni quis!</p>
-                    <!--                    <a class="btn btn-primary" href="#">Read More &rarr;</a>-->
+                    <h2 class="card-title" th:text="${post.title}">Scotland - Armenia: match prediction</h2>
+                    <p class="card-text" th:text="${post.description}">The upcoming match will be the first in history
+                        between the national teams of Scotland and Armenia. And despite the victory of the team of
+                        Joaquin Caparros over Ireland, I do not observe other arguments in their favor, except for the
+                        suppression of the Scots after losing to Ukraine. I expect the "tartan army" to win by 1 or 2 goals.
+                        Due to the negligible coefficient, I don’t consider the option simply with the victory of the “tartan army”.
+                        But in a set with a total under (3.5) - this is a completely different matter!</p>
+                </div>
+                <div class="card-footer text-muted" th:text="${post.date}">
+
+                </div>
+            </div>
+
+
+            <div class="card my-4 hover-shadow" th:each="post:${newsList}">
+                <div class="card-header">
+                    <span class="badge badge-pill badge-primary text-light text-capitalize"
+                          th:text="${post.source}">Animals</span>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title" th:text="${post.title}">Dog Patron received an award at Cannes</h2>
+                    <p class="card-text" th:text="${post.description}">The fighting dog was awarded the "Palm Dog" film award.
+                        The cartridge became a real star of the world newsreel, so the jury decided that the pyrotechnician deserved
+                        a prestigious status!</p>
                 </div>
                 <div class="card-footer text-muted" th:text="${post.date}">
 
@@ -96,7 +110,7 @@
                 <div class="card-body">
                     <form method="get" th:action="@{/}">
                         <div class="input-group shadow-sm">
-                            <input class="form-control" id="searchBar" name="keyword" placeholder="Search for..."
+                            <input class="form-control" id="searchBar" name="keyword" placeholder="Enter keyword"
                                    type="text">
                             <span class="input-group-btn">
                             <button class="btn btn-primary" type="submit">Go!</button>
@@ -108,17 +122,23 @@
 
             <!-- Categories Widget -->
             <div class="card my-4 hover-shadow">
-                <h5 class="card-header">Sources</h5>
+                <h5 class="card-header">Categories</h5>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-6 my-2 px-4">
-                            <a th:href="@{/(keyword=BBC)}">BBC - Amharic</a>
+                            <a th:href="@{/(keyword=Sport)}">Sport</a>
                         </div>
                         <div class="col-lg-6 my-2 px-4">
-                            <a th:href="@{/(keyword=Reporter)}">Reporter</a>
+                            <a th:href="@{/(keyword=Cinema)}">Cinema</a>
                         </div>
                         <div class="col-lg-6 my-2 px-4">
-                            <a th:href="@{/(keyword=Fana)}">Fana</a>
+                            <a th:href="@{/(keyword=Games)}">Games</a>
+                        </div>
+                        <div class="col-lg-6 my-2 px-4">
+                            <a th:href="@{/(keyword=Animals)}">Animals</a>
+                        </div>
+                        <div class="col-lg-6 my-2 px-4">
+                            <a th:href="@{/(keyword=Books)}">Books</a>
                         </div>
                     </div>
                 </div>
@@ -134,7 +154,7 @@
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">News Site 2022</p>
+        <p class="m-0 text-center text-white">News 2022</p>
     </div>
     <!-- /.container -->
 </footer>
