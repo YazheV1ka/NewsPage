@@ -12,13 +12,13 @@ public class AdminController {
     NewsService newsService;
 
 
-    @RequestMapping(value = "news/new", method = RequestMethod.POST)
+    @RequestMapping(value = "news/newNews", method = RequestMethod.POST)
     public String addNews(@ModelAttribute News news) {
         newsService.addNews(news);
         return "redirect:/news";
     }
 
-    @RequestMapping(value = "news/new", method = RequestMethod.GET)
+    @RequestMapping(value = "news/newNews", method = RequestMethod.GET)
     public String newNews(Model model) {
         model.addAttribute("news",new News());
         return "newNews";

@@ -24,29 +24,16 @@
 
 <body>
 
-<%--<!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" th:href="@{/}">Daily News</a>
-        <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
-                class="navbar-toggler" data-target="#navbarResponsive" data-toggle="collapse" type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <&lt;%&ndash;div class="collapse navbar-collapse" id="navbarResponsive">
+
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item mx-2">
-                    <a class="nav-link" th:href="@{/(keyword=Fana)}">Fana</a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link" th:href="@{/(keyword=Reporter)}">Reporter</a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link" th:href="@{/(keyword=BBC)}">BBC - Amharic</a>
-                </li>
+                    <a class="nav-link" th:href="@{/(keyword=Fana)}">[User]</a>
             </ul>
-        </div>&ndash;%&gt;
+        </div>
     </div>
-</nav>--%>
+</nav>
 
 <!-- Page Content -->
 <div class="container" style="min-height: 84vh">

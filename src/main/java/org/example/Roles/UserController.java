@@ -32,14 +32,15 @@ public class UserController{
         return "news";
     }
 
-    /*@RequestMapping(value = "/news", method = RequestMethod.GET)
+    @RequestMapping(value = "/news", method = RequestMethod.GET)
+    //@RequestParam(required = false)
     public String findByCategory(@RequestParam String category) {
         newsList = newsServiceImpl.findByCategory(category);
         if (newsList == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "News in this category not found");
         }
         return "news";
-    }*/
+    }
 
     /*@RequestMapping(value = "/news", method = RequestMethod.GET)
     public String findByKeyWord(@RequestParam String content) {
