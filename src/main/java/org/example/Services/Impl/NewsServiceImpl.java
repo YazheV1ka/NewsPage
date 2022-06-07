@@ -3,8 +3,11 @@ package org.example.Services.Impl;
 import org.example.News;
 import org.example.Repository.NewsRepository;
 import org.example.Services.NewsService;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class NewsServiceImpl implements NewsService {
 
     private final String GET_ALL_NEWS = "select id, title, content, category, date from news";
