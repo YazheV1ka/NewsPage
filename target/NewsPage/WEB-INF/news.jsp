@@ -1,11 +1,10 @@
-<jsp:useBean id="newsList" scope="request" type="java.util.List<org.example.News>"/>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
 <html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns="http://www.w3.org/1999/xhtml">
+
 
 <head>
     <meta charset="utf-8">
@@ -42,18 +41,20 @@
             </h1>
 
             <!-- News Post -->
+            <jsp:useBean id="newsList" scope="request" type="java.util.List<org.example.News>"/>
+
             <c:forEach var="news" items="${newsList}">
                 <div class="card my-4 hover-shadow">
-                    <form method="get" th:action="@{/news}">
+                    <form method="get">
                         <div class="card-header">
                             <a class="badge badge-pill badge-primary text-light text-capitalize"
                             >${news.category}</a>
                         </div>
                         <div class="card-body">
-                            <h2 class="card-title" th:text="${news.title}">${news.title}</h2>
-                            <p class="card-text" th:text="${news.content}">${news.content}</p>
+                            <h2 class="card-title" itemscope="${news.title}">${news.title}</h2>
+                            <p class="card-text" itemscope="${news.content}">${news.content}</p>
                         </div>
-                        <div class="card-footer text-muted text-right" th:text="${news.date}">${news.date}</div>
+                        <div class="card-footer text-muted text-right">${news.date}</div>
                     </form>
                 </div>
             </c:forEach>
@@ -66,7 +67,7 @@
             <div class="card my-4 hover-shadow">
                 <h5 class="card-header">Search</h5>
                 <div class="card-body">
-                    <form method="get" th:action="@{/news}">
+                    <form method="get" action="@{/news}">
                         <div class="input-group shadow-sm">
                             <input class="form-control" id="searchBar" name="keyword" placeholder="Enter keyword"
                                    type="text">
@@ -84,16 +85,16 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-6 my-2 px-4">
-                            <a class="btn-primary btn-light text-black" th:href="@{/news/{category=Sport}}" role="button">Sport</a>
+                            <a class="btn-primary btn-light text-black" href="/NewsPage_war_exploded/news?category=Sport" role="button">Sport</a>
                         </div>
                         <div class="col-lg-6 my-2 px-4">
-                            <a class="btn-primary btn-light text-black" th:href="@{/news/{category=Cinema}}" role="button">Cinema</a>
+                            <a class="btn-primary btn-light text-black" href="/NewsPage_war_exploded/news?category=Cinema" role="button">Cinema</a>
                         </div>
                         <div class="col-lg-6 my-2 px-4">
-                            <a class="btn-primary btn-light text-black" th:href="@{/news/{category=Games}}" role="button">Games</a>
+                            <a class="btn-primary btn-light text-black" href="/NewsPage_war_exploded/news?category=Games" role="button">Games</a>
                         </div>
                         <div class="col-lg-6 my-2 px-4">
-                            <a class="btn-primary btn-light text-black" th:href="@{/news/{category=Animals}}" role="button">Animals</a>
+                            <a class="btn-primary btn-light text-black" href="/NewsPage_war_exploded/news?category=Animals" role="button">Animals</a>
                         </div>
                     </div>
                 </div>
@@ -115,8 +116,8 @@
 </footer>
 
 <!-- Bootstrap core JavaScript -->
-<script th:src="@{webjars/jquery/3.4.1/jquery.min.js}"></script>
-<script th:src="@{webjars/bootstrap/4.1.3/bootstrap.min.js}"></script>
+<script src="@{webjars/jquery/3.4.1/jquery.min.js}"></script>
+<script src="@{webjars/bootstrap/4.1.3/bootstrap.min.js}"></script>
 
 </body>
 

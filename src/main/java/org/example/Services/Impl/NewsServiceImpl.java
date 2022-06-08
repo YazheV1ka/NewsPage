@@ -10,10 +10,6 @@ import java.util.List;
 @Service
 public class NewsServiceImpl implements NewsService {
 
-    private final String GET_ALL_NEWS = "select id, title, content, category, date from news";
-    private final String ADD_NEW_NEWS = "insert into news(id, title, content, category, date) values(default,?, ?, ?, ?)";
-    private final String GET_NEWS_BY_CATEGORY = "select id, title, content, category, date from news where category = ?";
-    private final String GET_NEWS_BY_KEYWORD = "select id, title, content, category, date from news where content = '%?'";
 
     private final NewsRepository newsRepository;
 

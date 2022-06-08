@@ -40,15 +40,15 @@
     <div class="row">
 
         <!-- Blog Entries Column -->
-        <div class="col-md-8">
-            <h1 class="my-4">News Site
-                <small class="ml-3 h4 text-mute" th:text="${param.keyword}">Add New News</small>
+        <div class="col-md-12">
+            <h1 class="my-5">News Site
+                <small class="ml-4 h4 text-mute" th:text="${param.keyword}">Add New News</small>
             </h1>
-            </div>
+        </div>
 
-            <!-- News Post -->
-            <div class="card my-5 hover-shadow align-items-my-center">
-                <div class="card-header">
+        <!-- News Post -->
+        <div class="card my-5 hover-shadow align-items-my-center">
+            <div class="card-header">
                 <form th:method="POST" th:action="@{/news}" th:object="${news}">
                     <label for="title">Enter title: </label>
                     <input type="text" th:field="*{title}" id="title"/>
@@ -65,12 +65,20 @@
                     <input type="submit" value="Add news!"/>
                 </form>
 
-                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="card-header text-left">
+                <form action="news.jsp" th:object="${news}">
+                    <button type="button" name="back" onclick="history.back()">Back</button>
+                </form>
             </div>
         </div>
     </div>
-    <!-- /.row -->
-    <hr>
+</div>
+<!-- /.row -->
+<hr>
 </div>
 <!-- /.container -->
 

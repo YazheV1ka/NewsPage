@@ -13,14 +13,14 @@ public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Integer id;
+    public Integer id;
     @Column(name = "title")
-    private String Title;
+    public String title;
     @Column(name = "content")
-    private String Content;
+    public String content;
     @Column(name = "category")
-    private String Category;
+    public String category;
     @Column(name = "date")
-    private Date Date;
+    public Date date;
 
 }
