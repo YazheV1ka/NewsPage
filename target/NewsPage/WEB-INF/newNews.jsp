@@ -44,56 +44,38 @@
             <h1 class="my-4">News Site
                 <small class="ml-3 h4 text-mute" th:text="${param.keyword}">Add New News</small>
             </h1>
-            <div th:if="${newsList.isEmpty()}">
-                <hr/>
+        </div>
 
-            </div>
+        <!-- News Post -->
+        <div class="card my-5 hover-shadow align-items-my-center">
+            <div class="card-header">
+                <form th:method="POST" th:action="@{/news}" th:object="${news}">
+                    <label for="title">Enter title: </label>
+                    <input type="text" th:field="*{title}" id="title"/>
+                    <br/>
+                    <label for="content">Enter content: </label>
+                    <input type="text" th:field="*{content}" id="content"/>
+                    <br/>
+                    <label for="category">Enter category: </label>
+                    <input type="text" th:field="*{category}" id="category"/>
+                    <br/>
+                    <label for="date">Enter date: </label>
+                    <input type="date" th:field="*{date}" id="date"/>
+                    <br/>
+                    <input type="submit" value="Add news!"/>
+                </form>
 
-            <!-- News Post -->
-            <div class="card my-4 hover-shadow" th:each="post:${newsList}">
-                <div class="card-header">
-                    <span class="badge badge-pill badge-primary text-light text-capitalize"
-                          th:text="${post.source}">Sport</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title" th:text="${post.title}">Scotland - Armenia: match prediction</h2>
-                    <p class="card-text" th:text="${post.description}">The upcoming match will be the first in history
-                        between the national teams of Scotland and Armenia. And despite the victory of the team of
-                        Joaquin Caparros over Ireland, I do not observe other arguments in their favor, except for the
-                        suppression of the Scots after losing to Ukraine. I expect the "tartan army" to win by 1 or 2 goals.
-                        Due to the negligible coefficient, I don’t consider the option simply with the victory of the “tartan army”.
-                        But in a set with a total under (3.5) - this is a completely different matter!</p>
-                </div>
-                <div class="card-footer text-muted" th:text="${post.date}">
-
-                </div>
-            </div>
-
-
-            <div class="card my-4 hover-shadow" th:each="post:${newsList}">
-                <div class="card-header">
-                    <span class="badge badge-pill badge-primary text-light text-capitalize"
-                          th:text="${post.source}">Animals</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title" th:text="${post.title}">Dog Patron received an award at Cannes</h2>
-                    <p class="card-text" th:text="${post.description}">The fighting dog was awarded the "Palm Dog" film award.
-                        The cartridge became a real star of the world newsreel, so the jury decided that the pyrotechnician deserved
-                        a prestigious status!</p>
-                </div>
-                <div class="card-footer text-muted" th:text="${post.date}">
-
-                </div>
             </div>
         </div>
     </div>
-    <!-- /.row -->
-    <hr>
+</div>
+<!-- /.row -->
+<hr>
 </div>
 <!-- /.container -->
 
 <!-- Footer -->
-<footer class="py-5 bg-dark">
+<footer class="py-4 bg-dark">
     <div class="container">
         <p class="m-0 text-center text-white">News 2022</p>
     </div>
@@ -110,7 +92,7 @@
 
 <style>
     body {
-        padding-top: 56px;
+        padding-top: 30px;
     }
 
     .hover-shadow {

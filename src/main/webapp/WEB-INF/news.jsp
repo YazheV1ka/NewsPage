@@ -1,12 +1,13 @@
+<jsp:useBean id="newsList" scope="request" type="java.util.List<org.example.News>"/>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
+
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
-
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <meta content="" name="description">
@@ -16,35 +17,16 @@
 
     <!-- Bootstrap core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/sketchy/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link rel="stylesheet" th:href="@{/css/app.css}">
-
 </head>
 
-<body>
 
-<!-- Navigation -->
+<body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" th:href="@{/}">Daily News</a>
-        <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
-                class="navbar-toggler" data-target="#navbarResponsive" data-toggle="collapse" type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item mx-2">
-                    <a class="nav-link" th:href="@{/(keyword=Fana)}">Fana</a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link" th:href="@{/(keyword=Reporter)}">Reporter</a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link" th:href="@{/(keyword=BBC)}">BBC - Amharic</a>
-                </li>
-            </ul>
-        </div>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item mx-2">
+                <a class="text-right text-light" >[User]</a>
+        </ul>
     </div>
 </nav>
 
@@ -55,36 +37,26 @@
 
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-            <h1 class="my-4">News
-                <small class="ml-3 h4 text-mute" th:text="${param.keyword}">All Sources</small>
+            <h1 class="my-4">News Site
+                <small class="ml-3 h4 text-mute">All News</small>
             </h1>
-            <div th:if="${newsList.isEmpty()}">
-                <hr/>
-                <p class="lead mb-0 d-inline-block font-italic">
-                    Found Nothing...
-                </p>
-                <a class="ml-3" th:href="@{/}">show all...</a>
-            </div>
 
             <!-- News Post -->
-            <div class="card my-4 hover-shadow" th:each="post:${newsList}">
+            <c:forEach var="news" items="${newsList}">
+            <div class="card my-4 hover-shadow">
+                <form method="get" th:action="@{/news}">
                 <div class="card-header">
-                    <span class="badge badge-pill badge-primary text-light text-capitalize"
-                          th:text="${post.source}">category</span>
+                    <a class="badge badge-pill badge-primary text-light text-capitalize"
+                          >${news.category}</a>
                 </div>
-                <!--                <img alt="Card image cap" class="card-img-top" src="http://placehold.it/750x300">-->
                 <div class="card-body">
-                    <h2 class="card-title" th:text="${post.title}">Post Title</h2>
-                    <p class="card-text" th:text="${post.description}">Lorem ipsum dolor sit amet, consectetur
-                        adipisicing elit. Reiciendis aliquid
-                        atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero
-                        voluptate voluptatibus possimus, veniam magni quis!</p>
-                    <!--                    <a class="btn btn-primary" href="#">Read More &rarr;</a>-->
+                    <h2 class="card-title" th:text="${news.title}">${news.title}</h2>
+                    <p class="card-text" th:text="${news.content}">${news.content}</p>
                 </div>
-                <div class="card-footer text-muted" th:text="${post.date}">
-
-                </div>
+                <div class="card-footer text-muted text-right" th:text="${news.date}">${news.date}</div>
+                </form>
             </div>
+            </c:forEach>
         </div>
 
         <!-- Sidebar Widgets Column -->
@@ -94,9 +66,9 @@
             <div class="card my-4 hover-shadow">
                 <h5 class="card-header">Search</h5>
                 <div class="card-body">
-                    <form method="get" th:action="@{/}">
+                    <form method="get" th:action="@{/news}">
                         <div class="input-group shadow-sm">
-                            <input class="form-control" id="searchBar" name="keyword" placeholder="Search for..."
+                            <input class="form-control" id="searchBar" name="keyword" placeholder="Enter keyword"
                                    type="text">
                             <span class="input-group-btn">
                             <button class="btn btn-primary" type="submit">Go!</button>
@@ -108,17 +80,20 @@
 
             <!-- Categories Widget -->
             <div class="card my-4 hover-shadow">
-                <h5 class="card-header">Sources</h5>
+                <h5 class="card-header">Categories</h5>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-6 my-2 px-4">
-                            <a th:href="@{/(keyword=BBC)}">BBC - Amharic</a>
+                            <a class="btn-primary btn-light text-black" th:href="@{/news/{category=Sport}}" role="button">Sport</a>
                         </div>
                         <div class="col-lg-6 my-2 px-4">
-                            <a th:href="@{/(keyword=Reporter)}">Reporter</a>
+                            <a class="btn-primary btn-light text-black" th:href="@{/news/{category=Cinema}}" role="button">Cinema</a>
                         </div>
                         <div class="col-lg-6 my-2 px-4">
-                            <a th:href="@{/(keyword=Fana)}">Fana</a>
+                            <a class="btn-primary btn-light text-black" th:href="@{/news/{category=Games}}" role="button">Games</a>
+                        </div>
+                        <div class="col-lg-6 my-2 px-4">
+                            <a class="btn-primary btn-light text-black" th:href="@{/news/{category=Animals}}" role="button">Animals</a>
                         </div>
                     </div>
                 </div>
@@ -132,9 +107,9 @@
 <!-- /.container -->
 
 <!-- Footer -->
-<footer class="py-5 bg-dark">
+<footer class="py-4 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">News Site 2022</p>
+        <p class="m-0 text-center text-white">News 2022</p>
     </div>
     <!-- /.container -->
 </footer>
