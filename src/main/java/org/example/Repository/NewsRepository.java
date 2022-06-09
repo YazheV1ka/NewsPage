@@ -12,8 +12,8 @@ import java.util.List;
 @Repository
 public interface NewsRepository extends JpaRepository<News,Integer> {
 
-    @Query(value = "select * from news where content = '%?'", nativeQuery = true)
-    List<News> findByKeyWord(String content);
+    @Query(value = "select * from news_page.news n where n.content = :content", nativeQuery = true)
+    List<News> findByKeyWord(@Param("content")String content);
 
     @Query(value = "select * from news_page.news n where n.category = :category", nativeQuery = true)
     List<News> findByCategory(@Param("category") String category);

@@ -47,9 +47,12 @@ public class UserController{
         }
        return "news";
     }
+
+
+
     @Transactional
-    @GetMapping(value = "/news/content/{content}")
-    public String findByKeyWord(@PathVariable String content, Model model) {
+    @GetMapping(value = "/news/content")
+    public String findByKeyWord(@RequestParam(value = "content") String content, Model model) {
         newsList = newsServiceImpl.findByKeyWord(content);
         model.addAttribute("newsList",newsList);
         if (newsList == null) {
