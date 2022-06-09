@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Controller
@@ -20,11 +23,11 @@ public class UserController{
         this.newsServiceImpl = newsServiceImpl;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping(value = "/")
     public String get(){
         return "redirect:news";
     }
-    @RequestMapping(value = "/news", method = RequestMethod.GET)
+    @GetMapping(value = "/news")
     public String getAllNews(Model model) {
         newsList = newsServiceImpl.getAllNews();
         model.addAttribute("newsList",newsList);
@@ -32,24 +35,27 @@ public class UserController{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "News not found");
         }
         return "news";
+
     }
-
-    @RequestMapping(value = "/news/{category}", method = RequestMethod.GET)
-    public String findBy(@PathVariable(required = false) String category) {
-
+    @Transactional
+    @GetMapping(value = "/news/category/{category}")
+    public String findByCategory(@PathVariable String category, Model model) {
         newsList = newsServiceImpl.findByCategory(category);
+        model.addAttribute("newsList",newsList);
         if (newsList == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "News in this category not found");
         }
        return "news";
     }
-
-    @RequestMapping(value = "/news/{content}", method = RequestMethod.GET)
-    public String findByKeyWord(@PathVariable String content) {
+    @Transactional
+    @GetMapping(value = "/news/content/{content}")
+    public String findByKeyWord(@PathVariable String content, Model model) {
         newsList = newsServiceImpl.findByKeyWord(content);
+        model.addAttribute("newsList",newsList);
         if (newsList == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "News with this word not found");
         }
         return "news";
     }
+
 }

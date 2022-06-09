@@ -12,6 +12,7 @@ public class NewsServiceImpl implements NewsService {
 
 
     private final NewsRepository newsRepository;
+    private News news;
 
     public NewsServiceImpl(NewsRepository newsRepository) {
         this.newsRepository = newsRepository;
@@ -24,7 +25,9 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public News addNews(News news) {
-        return newsRepository.save(news);
+        this.news = news;
+        newsRepository.save(news);
+        return news;
     }
 
     @Override

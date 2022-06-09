@@ -41,7 +41,6 @@
             </h1>
 
             <!-- News Post -->
-            <jsp:useBean id="newsList" scope="request" type="java.util.List<org.example.News>"/>
 
             <c:forEach var="news" items="${newsList}">
                 <div class="card my-4 hover-shadow">
@@ -51,8 +50,8 @@
                             >${news.category}</a>
                         </div>
                         <div class="card-body">
-                            <h2 class="card-title" itemscope="${news.title}">${news.title}</h2>
-                            <p class="card-text" itemscope="${news.content}">${news.content}</p>
+                            <h2 class="card-title">${news.title}</h2>
+                            <p class="card-text">${news.content}</p>
                         </div>
                         <div class="card-footer text-muted text-right">${news.date}</div>
                     </form>
@@ -64,12 +63,14 @@
         <div class="col-md-4">
             <br><br><br>
             <!-- Search Widget -->
+
             <div class="card my-4 hover-shadow">
                 <h5 class="card-header">Search</h5>
                 <div class="card-body">
-                    <form method="get" action="@{/news}">
+
+                    <form method="get" action="${pageContext.request.contextPath}/news">
                         <div class="input-group shadow-sm">
-                            <input class="form-control" id="searchBar" name="keyword" placeholder="Enter keyword"
+                            <input class="form-control" id="searchBar" name="content" placeholder="Enter keyword"
                                    type="text">
                             <span class="input-group-btn">
                             <button class="btn btn-primary" type="submit">Go!</button>
@@ -85,16 +86,16 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-6 my-2 px-4">
-                            <a class="btn-primary btn-light text-black" href="/NewsPage_war_exploded/news?category=Sport" role="button">Sport</a>
+                            <a class="btn-primary btn-light text-black" href="${pageContext.request.contextPath}/news/category/Sport" role="button">Sport</a>
                         </div>
                         <div class="col-lg-6 my-2 px-4">
-                            <a class="btn-primary btn-light text-black" href="/NewsPage_war_exploded/news?category=Cinema" role="button">Cinema</a>
+                            <a class="btn-primary btn-light text-black" href="${pageContext.request.contextPath}/news/category/Cinema" role="button">Cinema</a>
                         </div>
                         <div class="col-lg-6 my-2 px-4">
-                            <a class="btn-primary btn-light text-black" href="/NewsPage_war_exploded/news?category=Games" role="button">Games</a>
+                            <a class="btn-primary btn-light text-black" href="${pageContext.request.contextPath}/news/category/Games" role="button">Games</a>
                         </div>
                         <div class="col-lg-6 my-2 px-4">
-                            <a class="btn-primary btn-light text-black" href="/NewsPage_war_exploded/news?category=Animals" role="button">Animals</a>
+                            <a class="btn-primary btn-light text-black" href="${pageContext.request.contextPath}/news/category/Animals" role="button">Animals</a>
                         </div>
                     </div>
                 </div>
