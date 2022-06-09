@@ -2,7 +2,6 @@ package org.example;
 
 import lombok.*;
 import javax.persistence.*;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -11,7 +10,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class News {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public Integer id;
     @Column(name = "title")
@@ -21,6 +20,6 @@ public class News {
     @Column(name = "category")
     public String category;
     @Column(name = "date")
-    public Date date;
+    public String date;
 
 }

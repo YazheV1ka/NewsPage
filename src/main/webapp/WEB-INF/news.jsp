@@ -68,7 +68,7 @@
                 <h5 class="card-header">Search</h5>
                 <div class="card-body">
 
-                    <form method="get" action="${pageContext.request.contextPath}/news">
+                    <form method="get" action="${pageContext.request.contextPath}/news/content/">
                         <div class="input-group shadow-sm">
                             <input class="form-control" id="searchBar" name="content" placeholder="Enter keyword"
                                    type="text">

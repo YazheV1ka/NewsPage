@@ -15,17 +15,16 @@ public class AdminController {
         this.newsService = newsService;
     }
 
-
-    @RequestMapping(value = "/newNews", method = RequestMethod.POST)
+    @PostMapping(value = "/newNews")
     public String addNews(@ModelAttribute News news, Model model) {
         newsService.addNews(news);
-        model.addAttribute("newsService",newsService);
+        model.addAttribute("newNews",newsService);
         return "redirect:/news";
     }
 
-    @RequestMapping(value = "/newNews", method = RequestMethod.GET)
+    @GetMapping(value = "/newNews")
     public String newNews(Model model) {
-        model.addAttribute("newsService",new News());
+        model.addAttribute("newNews",new News());
         return "newNews";
     }
 }

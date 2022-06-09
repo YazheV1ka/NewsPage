@@ -99,16 +99,15 @@
         <!-- News Post -->
         <div class="login-page">
             <div class="form">
-                <form:form modelAttribute="newsService" method="post" action="newNews">
+                <form:form modelAttribute="newNews" method="post" action="newNews">
                     <form:input path="title" type="text" placeholder="Title:"/>
 
                     <form:input path="content" type="text" placeholder="Content:"/>
 
                     <form:input path="category" type="text" placeholder="Category:"/>
 
-                    <form:input path="date" type="date" placeholder="Date:"/>
-
-                    <button>Add News</button>
+                    <form:input path="date" type="text" placeholder="Date:"/>
+                    <input type="submit" value="Add News"/>
                 </form:form>
             </div>
         </div>
